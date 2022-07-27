@@ -1,21 +1,14 @@
+import bodyParser from 'body-parser'
 import express from 'express'
+import router from './routes/cervezas.js'
 
 const app = express()
+app.use(bodyParser.json())
 
 const PORT = 3001
 
-app.get('/', (req, res) =>{
-    res.json({mensaje: 'Hola Mundo'})
-})
-app.get('/cerveza', (req, res) => {
-    res.json({mensaje: 'Vamos por unas cervezas, yo invito!'})
-})
-app.post('/', (req, res) => {
-    res.json({mensaje: 'Metodo Post'})
-})
-app.delete('/', (req, res) => {
-    res.send({mensaje: 'Metodo Delete'})
-})
+app.use('/', router)
+
 
 
 app.listen(PORT)
