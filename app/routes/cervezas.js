@@ -1,14 +1,12 @@
 import express from 'express'
-import { buscarCerveza, crearCerveza, mostrarCervezas } from '../controller/controllerCervezas.js'
+import { buscarCervezaId, buscarCervezaNombre, crearCerveza, mostrarCervezas } from '../controller/controllerCervezas.js'
 
 const router = express()
 
 router.get('/', mostrarCervezas)
 
- router.get('/:id', (req, res) => {
-    res.json({ message: 'Vas a tomar la cerveza numero' + req.params.id })
-  })
-router.get('/search', buscarCerveza)
+router.get('/:nombre', buscarCervezaNombre)
+router.get('/search/:id', buscarCervezaId)
 
 router.post('/', crearCerveza)
 

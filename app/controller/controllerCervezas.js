@@ -25,14 +25,28 @@ export const crearCerveza = async (req, res) => {
 }
 
 
-//buscar una cerveza
+//buscar una cerveza por id
 
-export const buscarCerveza = async (req, res) =>{
+export const buscarCervezaId = async (req, res) =>{
     try {
-        const cer = req.query.cer
         const cerveza = await modelCerveza.findAll({
             where:{
-                cer
+                id: req.params.id
+            }
+        })
+        res.json(cerveza)
+    } catch (error) {
+        res.json({mensaje: 'Error de busqueda'})
+    }
+}
+
+//buscar una cerveza por el nombre
+
+export const buscarCervezaNombre = async (req, res) =>{
+    try {
+        const cerveza = await modelCerveza.findAll({
+            where:{
+                nombre: req.params.nombre
             }
         })
         res.json(cerveza)
