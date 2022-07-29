@@ -24,9 +24,7 @@ export const crearCerveza = async (req, res) => {
     }
 }
 
-
 //buscar una cerveza por id
-
 export const buscarCervezaId = async (req, res) =>{
     try {
         const cerveza = await modelCerveza.findAll({
@@ -52,5 +50,35 @@ export const buscarCervezaNombre = async (req, res) =>{
         res.json(cerveza)
     } catch (error) {
         res.json({mensaje: 'Error de busqueda'})
+    }
+}
+
+//eliminar una cerveza
+
+export const eliminarCerveza = async (req, res) => {
+    try {
+        await modelCerveza.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        res.json({message: 'Cerveza eliminada con exito'})
+    } catch (error) {
+        res.json({message: 'Error al eliminar la cerveza'})
+    }
+}
+
+//actualizar una cerveza
+
+export const actualizarCerveza = async (req, res) => {
+    try {
+        await modelCerveza.update(req.body, {
+            where:{
+                id: req.params.id
+            }
+        })
+        res.json({message: 'Cerveza actualiza con exito'})
+    } catch (error) {
+        res.json({message: 'Error al actualizar la cerveza'})
     }
 }
